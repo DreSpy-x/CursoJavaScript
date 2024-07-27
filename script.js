@@ -11,12 +11,13 @@ function agregarTarea(tareas) {
     let descripcion = prompt("Ingrese la descripción de la tarea:\n");
     if (tareas.find(tarea => tarea.descripcion === descripcion)) {
         alert("Ya existe una tarea con esa descripción.");
-        return;
+        return tareas;
     }
     let duracion = obtenerEntradaNumerica("Ingrese la duración estimada de la tarea (en horas):\n", entrada => !isNaN(entrada) && entrada > 0);
     let prioridad = obtenerEntradaNumerica("Ingrese la prioridad: \n\n1. Alta\n2. Media\n3. Baja\n", entrada => entrada === 1 || entrada === 2 || entrada === 3);
     let tarea = {descripcion, duracion, prioridad};
     tareas.push(tarea);
+    alert("Tarea agregada exitosamente");
     return tareas;
 }
 
@@ -78,7 +79,6 @@ function administradorDeTareas() {
         switch (opcion) {
             case 1:
                 tareas = agregarTarea(tareas);
-                alert("Tarea agregada exitosamente");
                 break;
             case 2:
                 if (verificarTareas(tareas, "No hay tareas para mostrar.")) {
